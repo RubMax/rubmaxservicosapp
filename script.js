@@ -103,22 +103,41 @@
     function createSectionButtons(sections) {
   const navContainer = document.getElementById('section-nav');
   navContainer.innerHTML = '';
-  
-  sections.forEach(section => {
+
+  sections.forEach((section, index) => {
     const sectionId = generateSectionId(section);
     const button = document.createElement('a');
     button.href = `#${sectionId}`;
     button.textContent = section.toUpperCase();
     button.className = 'section-btn';
-    
+
     button.addEventListener('click', function(e) {
       e.preventDefault();
+
+      // Retirer les classes actives des autres boutons
+      document.querySelectorAll('.section-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Activer ce bouton
+      button.classList.add('active');
+
       scrollToSection(sectionId);
     });
-    
+
     navContainer.appendChild(button);
+
+    // ✅ Activer automatiquement le premier bouton
+    if (index === 0) {
+      button.classList.add('active');
+      // Appeler scrollToSection pour afficher la première section
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 100); // petit délai pour que les sections soient rendues
+    }
   });
 }
+
 
     
     /**
@@ -847,7 +866,7 @@ function initLogoTouchHandler(logo) {
       tapCount = 0;
       console.log("🎉 3 taps détectés !");
 
-      fetch('URL_DU_POPUP')
+      fetch('https://script.google.com/macros/s/AKfycbwoTyj8mpGYPfWCOxszGA-SPYTSBsJbJoHyFKgIr-b5xSAu-CO9pgE3bCebLGAWCVDnPg/exec?page=popupWelcome')
         .then(r => r.text())
         .then(content => {
           document.querySelector('#popup-welcome .popup-content p').innerText = content;
