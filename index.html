@@ -22,8 +22,25 @@
   <div class="fixed-header">
     <div class="logo-container" style="display: flex">
       <img id="logo" src="https://iili.io/FvPnHMP.jpg" alt="logo" class="logo-img"> 
-      
+      <button id="installBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  cursor: pointer;
+">
+  📲 App
+</button>
+
     </div>
+
 
     <div class="nav-scroll-container" id="nav-container">
       <div id="section-nav" class="section-nav"></div>
@@ -101,15 +118,15 @@
 
 
   <script src="script.js" defer></script>
-  
+  <script src="install.js"></script>
 <script>
-  fetch("https://script.google.com/macros/s/AKfycbwoTyj8mpGYPfWCOxszGA-SPYTSBsJbJoHyFKgIr-b5xSAu-CO9pgE3bCebLGAWCVDnPg/exec/getLogoUrl") // Remplace avec ton URL de Apps Script
-    .then(res => res.text())
-    .then(url => {
-      document.getElementById("logo").src = url;
-    })
-    .catch(err => console.error("Erreur chargement logo :", err));
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log("✅ SW enregistré", reg))
+      .catch(err => console.warn("❌ Erreur SW", err));
+  }
 </script>
+
 
 
 </body>

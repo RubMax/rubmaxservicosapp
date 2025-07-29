@@ -1,10 +1,10 @@
 {
-  "name": "RubMax Servicos App",
-  "short_name": "RubMaxApp",
+  "name": "RubMax Serviços",
+  "short_name": "RubMax",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#00b894",
   "icons": [
     {
       "src": "icon-192.png",
