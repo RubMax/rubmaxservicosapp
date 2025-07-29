@@ -883,9 +883,4 @@ document.addEventListener('DOMContentLoaded', waitForLogoAndInit);
 
 
 
-fetch("https://script.google.com/macros/s/AKfycbwoTyj8mpGYPfWCOxszGA-SPYTSBsJbJoHyFKgIr-b5xSAu-CO9pgE3bCebLGAWCVDnPg/exec/getLogoUrl") // Remplace avec ton URL de Apps Script
-    .then(res => res.text())
-    .then(url => {
-      document.getElementById("logo").src = url;
-    })
-    .catch(err => console.error("Erreur chargement logo :", err));
+

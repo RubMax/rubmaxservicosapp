@@ -21,7 +21,7 @@
   <!-- En-tête fixe -->
   <div class="fixed-header">
     <div class="logo-container" style="display: flex">
-      <img id="logo" src="" alt="Logo"  class="logo-img"/>
+      <img id="logo" src="https://iili.io/FvPnHMP.jpg" alt="logo" class="logo-img"> 
       
     </div>
 
@@ -102,7 +102,14 @@
 
   <script src="script.js" defer></script>
   
-
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbwoTyj8mpGYPfWCOxszGA-SPYTSBsJbJoHyFKgIr-b5xSAu-CO9pgE3bCebLGAWCVDnPg/exec/getLogoUrl") // Remplace avec ton URL de Apps Script
+    .then(res => res.text())
+    .then(url => {
+      document.getElementById("logo").src = url;
+    })
+    .catch(err => console.error("Erreur chargement logo :", err));
+</script>
 
 
 </body>
