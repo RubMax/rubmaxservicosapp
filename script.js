@@ -1,3 +1,4 @@
+window.deferredPrompt = window.deferredPrompt || null;
 
     // Variable globale pour stocker les détails du produit actuel
     let currentProduct = {};
@@ -419,9 +420,7 @@ ${(() => {
     }
     
     
-    function closePubPopup() {
-      document.getElementById('pub-popup').style.display = 'none';
-    }
+    
     
     function escapeHtml(text) {
       return text
@@ -680,6 +679,12 @@ ${(() => {
   window.open(`https://wa.me/916204805?text=${encodeURIComponent(message)}`, '_blank');
 }
 
+function closePopup() {
+  const popup = document.getElementById("popup");
+  if (popup) {
+    popup.style.display = "none";
+  }
+}
 
     function showCustomAlert(message) {
   const alertBox = document.createElement('div');
@@ -719,6 +724,7 @@ ${(() => {
 
     
     
+
 
 
 
