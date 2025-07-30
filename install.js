@@ -1,5 +1,5 @@
 // ✅ Déclaration globale unique
-window.deferredPrompt = window.deferredPrompt || null;
+window.deferredPrompt = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   const installBtn = document.getElementById('installBtn');
@@ -8,14 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // ✅ Toujours visible
-  installBtn.style.display = 'block';
+  // ✅ Cacher par défaut
+  installBtn.style.display = 'none';
 
   // ✅ Gestion de l'événement beforeinstallprompt
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     window.deferredPrompt = e;
     console.log("📦 beforeinstallprompt capturé");
+
+    // ✅ Afficher le bouton si installation possible
+    installBtn.style.display = 'block';
 
     // ✅ Action lors du clic
     installBtn.addEventListener('click', () => {
@@ -29,17 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           window.deferredPrompt = null;
         });
-      } else {
-        alert("⚠️ Installation non disponible pour ce navigateur.");
       }
     });
   });
 
-  // ✅ Fallback pour iOS, PC
+  // ✅ Fallback manuel pour iOS ou non supporté
   installBtn.addEventListener('click', () => {
     if (!window.deferredPrompt) {
-      alert("ℹ️ Pour installer l'app, utilisez le menu du navigateur (ou option 'Ajouter à l'écran d'accueil').");
+      alert("ℹ️ Pour installer l'app, utilisez le menu du navigateur (Ajouter à l'écran d'accueil).");
     }
+  });
+
+  // ✅ Cacher le bouton si déjà installée
+  window.addEventListener('appinstalled', () => {
+    console.log("📲 App installée avec succès");
+    installBtn.style.display = 'none';
   });
 });
 
